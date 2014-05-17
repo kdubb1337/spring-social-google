@@ -28,59 +28,50 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * {@link TaskQueryBuilder} implementation.
+ * 
  * @author Gabriel Axel
  */
-class TaskQueryBuilderImpl extends
-		ApiQueryBuilderImpl<TaskQueryBuilder, TasksPage> implements TaskQueryBuilder {
+class TaskQueryBuilderImpl extends ApiQueryBuilderImpl<TaskQueryBuilder, TasksPage> implements TaskQueryBuilder {
 
 	private String taskListId = DEFAULT;
-	
+
 	TaskQueryBuilderImpl(RestTemplate restTemplate) {
 		super(TasksPage.class, restTemplate);
 	}
 	
-	@Override
 	public TaskQueryBuilder fromTaskList(String taskListId) {
 		this.taskListId = taskListId;
 		return this;
 	}
-	
-	@Override
+
 	public TaskQueryBuilder completedFrom(Date completedMin) {
 		return appendQueryParam("completedMin", completedMin);
 	}
 
-	@Override
 	public TaskQueryBuilder completedUntil(Date completedMax) {
 		return appendQueryParam("completedMax", completedMax);
 	}
 
-	@Override
 	public TaskQueryBuilder dueFrom(Date dueMin) {
 		return appendQueryParam("dueMin", dueMin);
 	}
 
-	@Override
 	public TaskQueryBuilder dueUntil(Date dueMax) {
 		return appendQueryParam("dueMax", dueMax);
 	}
-	
-	@Override
+
 	public TaskQueryBuilder updatedFrom(Date updatedMin) {
 		return appendQueryParam("updatedMin", updatedMin);
 	}
 
-	@Override
 	public TaskQueryBuilder includeCompleted(boolean showCompleted) {
 		return appendQueryParam("showCompleted", showCompleted);
 	}
 
-	@Override
 	public TaskQueryBuilder includeDeleted(boolean showDeleted) {
 		return appendQueryParam("showDeleted", showDeleted);
 	}
 
-	@Override
 	public TaskQueryBuilder includeHidden(boolean showHidden) {
 		return appendQueryParam("showHidden", showHidden);
 	}

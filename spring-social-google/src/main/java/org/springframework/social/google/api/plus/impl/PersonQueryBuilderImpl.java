@@ -32,9 +32,7 @@ public class PersonQueryBuilderImpl extends ApiQueryBuilderImpl<PersonQueryBuild
 		super(PEOPLE_SEARCH_URL, PeoplePage.class, restTemplate);
 	}
 	
-	@Override
 	public PersonQueryBuilder searchFor(String text) {
 		return appendQueryParam("query", encode(text));
 	}
-	
 }

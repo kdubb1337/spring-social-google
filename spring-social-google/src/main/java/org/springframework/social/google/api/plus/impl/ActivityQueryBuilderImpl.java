@@ -30,15 +30,12 @@ public class ActivityQueryBuilderImpl extends ApiQueryBuilderImpl<ActivityQueryB
 	public ActivityQueryBuilderImpl(RestTemplate restTemplate) {
 		super("https://www.googleapis.com/plus/v1/activities", ActivitiesPage.class, restTemplate);
 	}
-	
-	@Override
+
 	public ActivityQueryBuilder searchFor(String text) {
 		return appendQueryParam("query", encode(text));
 	}
-	
-	@Override
+
 	public ActivityQueryBuilder orderBy(ActivitiesOrder order) {
 		return appendQueryParam("orderBy", order);
 	}
-
 }

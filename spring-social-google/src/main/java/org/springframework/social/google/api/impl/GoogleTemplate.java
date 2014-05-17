@@ -47,34 +47,37 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * The central class for interacting with Google APIs.
  * </p>
  * <p>
- * Most of the APIs, specifically all GData APIs and Google+ usage of "me", require OAuth2 authentication.
- * To use methods that require OAuth2 authentication, {@link GoogleTemplate} must be constructed with
- * an access token which is authorized for the appropriate scope.
- * For using Google+ without authenticating, {@link GoogleTemplate} default constructor can be used.
+ * Most of the APIs, specifically all GData APIs and Google+ usage of "me", require OAuth2 authentication. To use
+ * methods that require OAuth2 authentication, {@link GoogleTemplate} must be constructed with an access token which is
+ * authorized for the appropriate scope. For using Google+ without authenticating, {@link GoogleTemplate} default
+ * constructor can be used.
  * </p>
+ * 
  * @author Gabriel Axel
  */
 public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
-	
+
 	private String accessToken;
 
 	private UserInfoOperations userOperations;
 	private PlusOperations plusOperations;
 	private TaskOperations taskOperations;
 	private DriveOperations driveOperations;
-	
+
 	/**
-	 * Creates a new instance of GoogleTemplate.
-	 * This constructor creates a new GoogleTemplate able to perform unauthenticated operations against Google+.
+	 * Creates a new instance of GoogleTemplate. This constructor creates a new GoogleTemplate able to perform
+	 * unauthenticated operations against Google+.
 	 */
 	public GoogleTemplate() {
 		initialize();
 	}
-	
+
 	/**
-	 * Creates a new instance of GoogleTemplate.
-	 * This constructor creates the FacebookTemplate using a given access token.
-	 * @param accessToken an access token granted by Google after OAuth2 authentication
+	 * Creates a new instance of GoogleTemplate. This constructor creates the FacebookTemplate using a given access
+	 * token.
+	 * 
+	 * @param accessToken
+	 *           an access token granted by Google after OAuth2 authentication
 	 */
 	public GoogleTemplate(String accessToken) {
 		super(accessToken);
@@ -88,10 +91,9 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 		taskOperations = new TaskTemplate(getRestTemplate(), isAuthorized());
 		driveOperations = new DriveTemplate(getRestTemplate(), isAuthorized());
 	}
-	
-	@Override
+
 	protected List<HttpMessageConverter<?>> getMessageConverters() {
-		
+
 		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -99,10 +101,10 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 		objectMapper.configure(FAIL_ON_EMPTY_BEANS, false);
 		objectMapper.setSerializationInclusion(NON_NULL);
 		jsonConverter.setObjectMapper(objectMapper);
-		
+
 		FormHttpMessageConverter formHttpMessageConverter = new FormHttpMessageConverter();
 		formHttpMessageConverter.addPartConverter(jsonConverter);
-		
+
 		List<HttpMessageConverter<?>> messageConverters = new ArrayList<HttpMessageConverter<?>>();
 		messageConverters.add(jsonConverter);
 		messageConverters.add(new ByteArrayHttpMessageConverter());
@@ -110,35 +112,28 @@ public class GoogleTemplate extends AbstractOAuth2ApiBinding implements Google {
 		messageConverters.add(new ResourceHttpMessageConverter());
 		return messageConverters;
 	}
-	
-	@Override
+
 	protected OAuth2Version getOAuth2Version() {
 		return OAuth2Version.BEARER;
 	}
 
-	@Override
 	public UserInfoOperations userOperations() {
 		return userOperations;
 	}
 
-	@Override
 	public PlusOperations plusOperations() {
 		return plusOperations;
 	}
 
-	@Override
 	public TaskOperations taskOperations() {
 		return taskOperations;
 	}
-	
-	@Override
+
 	public DriveOperations driveOperations() {
 		return driveOperations;
 	}
-	
-	@Override
+
 	public String getAccessToken() {
 		return accessToken;
 	}
-
 }

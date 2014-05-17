@@ -51,7 +51,6 @@ public abstract class QueryBuilderImpl<Q extends QueryBuilder<?, T>, T> implemen
 		return (Q)this;
 	}
 	
-	@Override
 	public Q maxResultsNumber(int maxResults) {
 		appendQueryParam("maxResults", maxResults);
 		return castThis();

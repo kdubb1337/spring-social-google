@@ -24,21 +24,20 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * {@link FileCommentQueryBuilder} implementation.
+ * 
  * @author Gabriel Axel
  */
-public class FileCommentQueryBuilderImpl extends ApiQueryBuilderImpl<FileCommentQueryBuilder, FileCommentsPage> implements FileCommentQueryBuilder {
+public class FileCommentQueryBuilderImpl extends ApiQueryBuilderImpl<FileCommentQueryBuilder, FileCommentsPage> implements
+		FileCommentQueryBuilder {
 
-	public FileCommentQueryBuilderImpl(String feedUrl,
-			Class<FileCommentsPage> type, RestTemplate restTemplate) {
+	public FileCommentQueryBuilderImpl(String feedUrl, Class<FileCommentsPage> type, RestTemplate restTemplate) {
 		super(feedUrl, type, restTemplate);
 	}
 
-	@Override
 	public FileCommentQueryBuilder setIncludeDeleted(boolean includeDeleted) {
 		return appendQueryParam("includeDeleted", includeDeleted);
 	}
 
-	@Override
 	public FileCommentQueryBuilder setUpdatedMin(Date updatedMin) {
 		return appendQueryParam("updatedMin", updatedMin);
 	}

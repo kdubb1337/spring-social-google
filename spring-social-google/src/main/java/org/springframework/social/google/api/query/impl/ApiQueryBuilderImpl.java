@@ -55,12 +55,10 @@ public class ApiQueryBuilderImpl<Q extends ApiQueryBuilder<?, T>, T extends ApiP
 		this.restTemplate = restTemplate;
 	}
 	
-	@Override
 	public Q fromPage(String pageToken) {
 		return appendQueryParam("pageToken", pageToken);
 	}
 	
-	@Override
 	public T getPage() {
 		try {
 			return restTemplate.getForObject(new URI(build().toString()), type);
