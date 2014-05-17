@@ -30,14 +30,14 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 import java.util.Date;
 
 import org.junit.Test;
-import org.springframework.social.google.api.AbstractGoogleApiTest;
+import org.springframework.social.google.api.AbstractGoogleApiTester;
 import org.springframework.social.google.api.tasks.Task;
 import org.springframework.social.google.api.tasks.TaskList;
 import org.springframework.social.google.api.tasks.TaskListsPage;
 import org.springframework.social.google.api.tasks.TaskStatus;
 import org.springframework.social.google.api.tasks.TasksPage;
 
-public class TaskTemplateTest extends AbstractGoogleApiTest {
+public class TaskTemplateTest extends AbstractGoogleApiTester {
 
 	private static final String DEFAULT = "@default";
 	

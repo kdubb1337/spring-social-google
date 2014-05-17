@@ -22,22 +22,21 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.social.google.api.impl.GoogleTemplate;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-public class AbstractGoogleApiTest {
+public class AbstractGoogleApiTester {
 
 	protected GoogleTemplate google;
-	
 	protected GoogleTemplate appAuthGoogle;
-	
 	protected MockRestServiceServer mockServer;
-	
 	protected MockRestServiceServer appAuthMockServer;
 	
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'");
+	
 	static {
 		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
 	}
