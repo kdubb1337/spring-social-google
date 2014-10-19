@@ -48,6 +48,38 @@ public class Activity extends ApiEntity {
 
 		@JsonProperty
 		protected int width;
+
+		public String getUrl() {
+			return url;
+		}
+
+		public void setUrl(String url) {
+			this.url = url;
+		}
+
+		public String getType() {
+			return type;
+		}
+
+		public void setType(String type) {
+			this.type = type;
+		}
+
+		public int getHeight() {
+			return height;
+		}
+
+		public void setHeight(int height) {
+			this.height = height;
+		}
+
+		public int getWidth() {
+			return width;
+		}
+
+		public void setWidth(int width) {
+			this.width = width;
+		}
 	}
 	
 	@JsonTypeInfo(property = "objectType", include = As.PROPERTY, use = Id.NAME)
@@ -62,6 +94,14 @@ public class Activity extends ApiEntity {
 
 		@JsonProperty
 		private PreviewImage image;
+
+		public PreviewImage getImage() {
+			return image;
+		}
+
+		public void setImage(PreviewImage image) {
+			this.image = image;
+		}
 
 		public String getUrl() {
 			return url;
